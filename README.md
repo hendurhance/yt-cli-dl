@@ -22,7 +22,8 @@ yt-downloader-cli
 
 ### Example
 
-![cli](https://user-images.githubusercontent.com/50846992/211169216-74f03e76-b240-4bbe-8d4d-c175e9809edd.gif)
+![cli](https://user-images.githubusercontent.com/50846992/211169504-b117bc9f-8901-4547-9209-646d7ca745d3.gif)
+
 
 
 ### License
