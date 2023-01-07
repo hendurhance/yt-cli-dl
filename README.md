@@ -20,7 +20,9 @@ yt-downloader-cli
 ```
 
 
-### Usage
+### Example
+
+![cli](https://user-images.githubusercontent.com/50846992/211169216-74f03e76-b240-4bbe-8d4d-c175e9809edd.gif)
 
 
 ### License
