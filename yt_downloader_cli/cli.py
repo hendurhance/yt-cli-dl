@@ -1,11 +1,8 @@
 import platform
 import os
 import pytube
-from youtube import YouTubeDownloader
 
-
-def main():
-    banner = """
+BANNER="""
          __   __ _____  ____  _      ___        ____                          _                    _             
          \ \ / /|_   _|/ ___|| |    |_ _|      |  _ \   ___ __      __ _ __  | |  ___    __ _   __| |  ___  _ __ 
           \ V /   | | | |    | |     | | _____ | | | | / _ \\ \ /\ / /| '_ \ | | / _ \  / _` | / _` | / _ \| '__|
@@ -14,7 +11,21 @@ def main():
          
         -- by @hendurhance
     """
-    print(banner)
+
+def download_video(url, quality, output_path):
+    yt = pytube.YouTube(url)
+    video = yt.streams.filter(resolution=quality).first()
+    video.download(output_path)
+
+def validate_url(url):
+    try:
+        yt = pytube.YouTube(url)
+        return True
+    except:
+        return False
+
+def main():
+    print(BANNER)
     type_msg = "Enter type of download:\n"
     type_msg += "  [1] Single video\n"
     type_msg += "  [2] Playlist\n"
@@ -25,11 +36,11 @@ def main():
         type = input(type_msg)
 
     url = input("Enter the URL of the YouTube video or playlist: ")
-    downloader = YouTubeDownloader(url, "", "")
-    while not downloader.validate_url():
+    downloader = validate_url(url)
+    while not downloader:
         print("Invalid URL. Please enter a valid URL.")
         url = input("Enter the URL of the YouTube video or playlist: ")
-        downloader = YouTubeDownloader(url, "", "")
+        downloader = validate_url(url)
     yt = pytube.YouTube(url)
     available_qualities = []
     for stream in yt.streams:
@@ -50,7 +61,7 @@ def main():
         else:
             output_path = os.path.join(os.getenv("HOME"), "Downloads")
 
-    downloader = YouTubeDownloader(url, output_path, quality)
+    downloader = download_video(url, quality, output_path)
     if type == "1":
         yt = pytube.YouTube(url)
         video = yt.streams.filter(resolution=quality).first()
