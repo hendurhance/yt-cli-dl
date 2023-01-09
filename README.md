@@ -22,7 +22,8 @@ yt-cli-dl
 
 ### Example
 
-![cli](https://user-images.githubusercontent.com/50846992/211169504-b117bc9f-8901-4547-9209-646d7ca745d3.gif)
+![cli] (https://user-images.githubusercontent.com/50846992/211348160-a0ff5d57-e039-4f48-be55-d412a90a9667.gif)
+
 
 
 
