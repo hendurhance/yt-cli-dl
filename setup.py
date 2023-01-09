@@ -23,7 +23,7 @@ setuptools.setup(
     install_requires=["pytube"],
     entry_points={
         "console_scripts": [
-            "yt-downloader-cli=cli:main",
+            "yt-downloader-cli=cmdline:main",
         ],
     },
 )
