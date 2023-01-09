@@ -1,8 +1,8 @@
 import setuptools
-from yt_downloader_cli.version import Version
+from yt_cli_dl.version import Version
 
 setuptools.setup(
-    name='yt-downloader-cli',
+    name='yt-cli-dl',
     version=Version('1.0.0').number,
     author='Endurance',
     author_email='hendurhance.dev@gmail.com',
@@ -18,11 +18,11 @@ setuptools.setup(
         'Operating System :: OS Independent',
     ],
     python_requires='>=3.6',
-    py_modules=['yt_downloader_cli'],
+    py_modules=['yt_cli_dl'],
     install_requires=[],
     entry_points={
         'console_scripts': [
-            'yt-downloader-cli=yt_downloader_cli.cli:main',
+            'yt-cli-dl=yt_cli_dl.cli:main',
         ],
     },
 )

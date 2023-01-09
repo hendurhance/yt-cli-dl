@@ -1,4 +1,4 @@
-# YouTube Downloader CLI
+# YouTube CLI Downloader
 
 A command-line interface (CLI) tool for downloading YouTube videos and playlists.
 
@@ -7,7 +7,7 @@ A command-line interface (CLI) tool for downloading YouTube videos and playlists
 To install the YouTube downloader CLI, run the following command:
 
 ```
-pip install yt-downloader-cli
+pip install yt-cli-dl
 ```
 
 
@@ -16,7 +16,7 @@ pip install yt-downloader-cli
 To use the YouTube downloader CLI, run the following command:
 
 ```
-yt-downloader-cli
+yt-cli-dl
 ```
 
 

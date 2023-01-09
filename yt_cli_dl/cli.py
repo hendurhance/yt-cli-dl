@@ -1,16 +1,23 @@
 import platform
 import os
 import pytube
+import signal
+import sys
 
 BANNER="""
-         __   __ _____  ____  _      ___        ____                          _                    _             
-         \ \ / /|_   _|/ ___|| |    |_ _|      |  _ \   ___ __      __ _ __  | |  ___    __ _   __| |  ___  _ __ 
-          \ V /   | | | |    | |     | | _____ | | | | / _ \\ \ /\ / /| '_ \ | | / _ \  / _` | / _` | / _ \| '__|
-           | |    | | | |___ | |___  | ||_____|| |_| || (_) |\ V  V / | | | || || (_) || (_| || (_| ||  __/| |   
-           |_|    |_|  \____||_____||___|      |____/  \___/  \_/\_/  |_| |_||_| \___/  \__,_| \__,_| \___||_|   
-         
+     __   _______      ____ _     ___      ____  _     
+     \ \ / /_   _|    / ___| |   |_ _|    |  _ \| |    
+      \ V /  | |_____| |   | |    | |_____| | | | |    
+       | |   | |_____| |___| |___ | |_____| |_| | |___ 
+       |_|   |_|      \____|_____|___|    |____/|_____|
+                                                       
         -- by @hendurhance
+    
     """
+
+def handler(signum, frame):
+    print("\nExiting...")
+    sys.exit()
 
 def download_video(url, quality, output_path):
     yt = pytube.YouTube(url)
@@ -41,6 +48,7 @@ def main():
         print("Invalid URL. Please enter a valid URL.")
         url = input("Enter the URL of the YouTube video or playlist: ")
         downloader = validate_url(url)
+    
     yt = pytube.YouTube(url)
     available_qualities = []
     for stream in yt.streams:
@@ -48,6 +56,7 @@ def main():
             available_qualities.append(stream.resolution)
     print("Available qualities: ", available_qualities)
     quality_msg = "Enter the quality of the downloaded video(s) (e.g. 1080p, 720p, 480p, 360p): "
+    
     quality = input(quality_msg)
     while quality not in available_qualities:
         print("Invalid quality. Please enter a valid quality.")
@@ -65,17 +74,13 @@ def main():
     if type == "1":
         yt = pytube.YouTube(url)
         video = yt.streams.filter(resolution=quality).first()
-        try:
-            video.download(output_path)
-        except KeyboardInterrupt:
-            print("Download cancelled.")
+        video.download(output_path)
     else:
-        try:
-            playlist = yt.streams.filter(resolution=quality).all()
-            for video in playlist:
-                video.download(output_path)
-        except KeyboardInterrupt:
-            print("Download cancelled.")
+        playlist = yt.streams.filter(resolution=quality).all()
+        for video in playlist:
+            video.download(output_path)
+
+signal.signal(signal.SIGINT, handler)
 
 if __name__ == "__main__":
     main()
